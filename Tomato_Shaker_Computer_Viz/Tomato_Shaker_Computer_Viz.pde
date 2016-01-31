@@ -78,10 +78,21 @@ void loadTargetVals(){
 }
 
 void findFlowers(){
+  ArrayList<int[]> possibleFlowerPoints = new ArrayList<int[]>();
   for(int yPix = 0; yPix < screenH; yPix++){
     for(int xPix = 0; xPix < screenW; xPix ++){
       color currentPixColor = get(xPix, yPix);
-      if(red(currentPixColor))
+      if((((currentPixColor >> 16) & 0xFF) >= (targetVals[0] - targetVals[4])) &&   //Checks that the color is more than red-certainty
+          (((currentPixColor >> 16) & 0xFF) <= (targetVals[0] + targetVals[4]))){   //Checks that the color is less than red+certainty
+        if((((currentPixColor >> 8) & 0xFF) >= (targetVals[0] - targetVals[4])) &&  //Checks that the color is more than green-certainty
+            (((currentPixColor >> 8) & 0xFF) <= (targetVals[0] + targetVals[4]))){  //Checks that the color is less than green+certainty
+          if(((currentPixColor & 0xFF) >= (targetVals[0] - targetVals[4])) &&       //Checks that the color is more than blue-certainty
+              ((currentPixColor & 0xFF) <= (targetVals[0] + targetVals[4]))){       //Checks that the color is less than blue+certainty
+            int[] possibleFlowerPoint = {xPix, yPix};
+            possibleFlowerPoints.add(possibleFlowerPoint);
+          }
+        }
+      }
     }
   }
 }
