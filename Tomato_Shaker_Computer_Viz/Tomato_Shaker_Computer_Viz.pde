@@ -113,37 +113,45 @@ void findFlowers(){
       }
     }
   }
-  
-  println("Trying to match all the flowers");
-  ArrayList<int[]> startingFlower = new ArrayList<int[]>();
-  startingFlower.add(possibleFlowerPoints.get(0));
-  possibleFlowers.add(startingFlower);
-  for(int currentFlowerPoint = 1; currentFlowerPoint < possibleFlowerPoints.size(); currentFlowerPoint++){   //For every possible flower point
-    println("Checking Flower Point: " + currentFlowerPoint);
-    ArrayList<ArrayList> possibleFlowersForIterating = new ArrayList<ArrayList>();
-    possibleFlowersForIterating = copyArrayLists(possibleFlowers);
-    int[] possibleFlowerCoordToCheck = possibleFlowerPoints.get(currentFlowerPoint);                         //The possible coordinate to Check
-    for(int possibleFlower = 0; possibleFlower < possibleFlowersForIterating.size(); possibleFlower++){                  //For every possible flower already identified
-      println("Checking with flower " + possibleFlower);
-      ArrayList<int[]> tempPossibleFlower = possibleFlowersForIterating.get(possibleFlower);
-      for(int coordInPossibleFlower = 0; coordInPossibleFlower < tempPossibleFlower.size(); coordInPossibleFlower++){    //For every coordinate describing the possible flower
-        int[] coord = tempPossibleFlower.get(coordInPossibleFlower);
-        if((possibleFlowerCoordToCheck[0] >= coord[0] - 1)||                                                 //If the possible coord is to the left of the existing coord
-           (possibleFlowerCoordToCheck[0] <= coord[0] + 1)||                                                 //Or the possible coord is to the right of the existing coord
-           (possibleFlowerCoordToCheck[1] >= coord[1] - 1)||                                                 //Or the possible coord is above the existing coord
-           (possibleFlowerCoordToCheck[1] <= coord[1] + 1)){                                                 //Or the possible coord is below the existing coord
-          tempPossibleFlower.add(possibleFlowerCoordToCheck);
-          possibleFlowers.add(tempPossibleFlower);
-          possibleFlowers.remove(currentFlowerPoint);
-          println("Added point to flower " + possibleFlower);
+  println("Trying to make flowers");
+  ArrayList<int[]> initFlower = new ArrayList<int[]>();
+  initFlower.add(possibleFlowerPoints.get(0));
+  for(int flowerPoint = 1; flowerPoint < possibleFlowerPoints.size(); flowerPoint++){
+    int[] pointToCheck = possibleFlowerPoints.get(flowerPoint);
+    println("Iterating over flower points");
+    boolean needRefresh = false;
+    for(int flower = 0; flower < possibleFlowers.size(); flower++){
+      println("Iterating over existing flowers");
+      ArrayList<int[]> currentFlower = possibleFlowers.get(flower);
+      for(int coord = 0; coord < currentFlower.size(); coord++){
+        int[] coords = currentFlower.get(coord);
+        println("Iterating over flower coords");
+        if(pointToCheck[0] >= coords[0] - 1 && pointToCheck[0] <= coords[0] + 1){
+          if(pointToCheck[1] >= coords[1] - 1 && pointToCheck[1] <= coords[1] + 1){
+            currentFlower.add(coords);
+            possibleFlowers.remove(flower);
+            possibleFlowers.add(currentFlower);
+            needRefresh = true;
+            break;
+          }
         }
         else{
           ArrayList<int[]> newFlower = new ArrayList<int[]>();
-          newFlower.add(possibleFlowerCoordToCheck);
           possibleFlowers.add(newFlower);
-          println("Added new flower");
+          needRefresh = true;
+          break;
         }
       }
+      if(needRefresh){
+        break;
+      }
+    }
+  }
+  for(int i = 0; i < possibleFlowers.size(); i++){
+    ArrayList<int[]> flower = possibleFlowers.get(i);
+    for(int j = 0; j < flower.size(); j++){
+      int[] coords = flower.get(j);
+      println
     }
   }
 }
