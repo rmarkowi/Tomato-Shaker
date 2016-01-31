@@ -33,4 +33,10 @@ void keyPressed(){
   else if(key == ' '){
     findFlowers();
   }
+  else if(key == '1'){
+    showFlowerPoints = !showFlowerPoints;
+  }
+  else if(key == '2'){
+    showFlowerGuesses = !showFlowerGuesses;
+  }
 }
