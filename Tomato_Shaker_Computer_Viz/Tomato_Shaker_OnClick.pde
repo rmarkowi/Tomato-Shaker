@@ -30,4 +30,7 @@ void keyPressed(){
     camera.stop();
     exit();
   }
+  else if(key == ' '){
+    findFlowers();
+  }
 }

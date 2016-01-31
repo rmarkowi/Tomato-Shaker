@@ -76,3 +76,12 @@ void loadTargetVals(){
     }
   }
 }
+
+void findFlowers(){
+  for(int yPix = 0; yPix < screenH; yPix++){
+    for(int xPix = 0; xPix < screenW; xPix ++){
+      color currentPixColor = get(xPix, yPix);
+      if(red(currentPixColor))
+    }
+  }
+}
