@@ -1,7 +1,7 @@
 import processing.video.*;
 
 Capture camera;
-String[] camsToUse = {"name=Logitech HD Webcam C615,size=1920x1080,fps=30", "name=FaceTime HD Camera,size=1280x720,fps=30"};
+String[] camsToUse = {"name=Logitech HD Webcam C615,size=1920x1080,fps=30", "name=FaceTime HD Camera,size=1920x1080x,fps=30", "name=FaceTime HD Camera,size=1280x720,fps=30"};
 String colorValFile = "data/colorvalues.txt";
 int screenW = 1920;
 int screenH = 1080;
