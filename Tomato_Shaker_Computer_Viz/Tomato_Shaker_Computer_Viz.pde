@@ -112,7 +112,7 @@ void findFlowers(){
         }
       }
     }
-  }
+  }/*
   println("Trying to make flowers");
   ArrayList<int[]> initFlower = new ArrayList<int[]>();
   initFlower.add(possibleFlowerPoints.get(0));
@@ -153,7 +153,7 @@ void findFlowers(){
       int[] coords = flower.get(j);
       println
     }
-  }
+  }*/
 }
 
 void showFlowerPoints(){
